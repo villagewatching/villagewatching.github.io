@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/introduction.css">
+    <script src="js/echarts.js"></script>
+</head>
+
+<body>
+    <div class="header w">
+        <!-- logo部分 -->
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="" class="logo"></a>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="progress.html">发展历程</a></li>
+                <li><a href="introduction.html">村落介绍</a></li>
+                <li><a href="story.html">村落故事</a></li>
+                <li><a href="#">国家政策</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="viewboard">
+        <div class="leftchart">
+            <div class="leftpart1">
+                <h4>当地全年气温概览</h4>
+                <div class="leftchart1"></div>
+                <script>
+                    var myChart = echarts.init(document.querySelector('.leftchart1'));
+                    var option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            formatter: '{b} :<br/> {a0}: {c0}  °C<br/> {a1}: {c1} °C'
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: [
+                                '1月',
+                                '2月',
+                                '3月',
+                                '4月',
+                                '5月',
+                                '6月',
+                                '7月',
+                                '8月',
+                                '9月',
+                                '10月',
+                                '11月',
+                                '12月'
+                            ]
+                        },
+                        yAxis: {
+                            type: 'value',
+                            name: '温度',
+                            min: 0,
+                            max: 35,
+                            interval: 5,
+                            axisLabel: {
+                                formatter: '{value} °C'
+                            }
+                        },
+                        series: [
+                            {
+                                name: '平均高温',
+                                type: 'line',
+                                data: [9, 16, 18, 19, 25, 28, 30, 29, 27, 18, 13, 10],
+                                itemStyle: {
+                                    lineStyle: {
+                                        color: '#FF0000'
+                                    }
+                                }
+                            },
+                            {
+                                name: '平均低温',
+                                type: 'line',
+                                data: [2, 7, 10, 13, 17, 20, 22, 21, 19, 13, 7, 4],
+                                itemStyle: {
+                                    lineStyle: {
+                                        color: '#0000FF'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                </script>
+            </div>
+            <div class="leftpart2">
+                <h4>全年空气质量统计</h4>
+                <div class="leftchart2"></div>
+                <script>
+                    var myChart = echarts.init(document.querySelector('.leftchart2'));
+                    var option = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b}: {c} ({d}%)'
+                        },
+                        legend: {
+                            data: [
+                                '多云',
+                                '晴',
+                                '小雨',
+                                '大雨',
+                                '中雨',
+                                '空气优',
+                                '空气良',
+                                '轻度污染',
+                                '重度污染'
+                            ]
+                        },
+                        series: [
+                            {
+                                name: '空气概览',
+                                type: 'pie',
+                                selectedMode: 'multiple',
+                                radius: [0, '30%'],
+                                label: {
+                                    position: 'inner',
+                                    fontSize: 14
+                                },
+                                labelLine: {
+                                    show: true
+                                },
+                                data: [
+                                    { value: 139, name: '空气优' },
+                                    { value: 172, name: '空气良' },
+                                    { value: 39, name: '轻度污染', selected: true },
+                                    { value: 16, name: '重度污染', selected: true }
+                                ]
+                            },
+                            {
+                                name: '天气概览',
+                                type: 'pie',
+                                radius: ['45%', '60%'],
+                                labelLine: {
+                                    length: 30
+                                },
+                                label: {
+                                    formatter: ' {b|{b}：}{c}  {per|{d}%}  ',
+                                    backgroundColor: '#F6F8FC',
+                                    borderColor: '#8C8D8E',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    rich: {
+                                        a: {
+                                            color: '#6E7079',
+                                            lineHeight: 22,
+                                            align: 'center'
+                                        },
+                                        hr: {
+                                            borderColor: '#8C8D8E',
+                                            width: '100%',
+                                            borderWidth: 1,
+                                            height: 0
+                                        },
+                                        b: {
+                                            color: '#4C5058',
+                                            fontSize: 14,
+                                            fontWeight: 'bold',
+                                            lineHeight: 33
+                                        },
+                                        per: {
+                                            color: '#fff',
+                                            backgroundColor: '#4C5058',
+                                            padding: [3, 4],
+                                            borderRadius: 4
+                                        }
+                                    }
+                                },
+                                data: [
+                                    { value: 40, name: '晴' },
+                                    { value: 152, name: '小雨' },
+                                    { value: 7, name: '中雨' },
+                                    { value: 8, name: '大雨' },
+                                    { value: 139, name: '多云' }
+                                ]
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                </script>
+            </div>
+        </div>
+        <div class="rightchart">
+            <div class="rightpart1">
+                <h4>战旗热词一览</h4>
+                <div class="rightchart1">
+                    <iframe src="https://dycharts.com/xshow/index.html?id=c_09b76a06b9503fe81d7bd80dcd377136"
+                        width="500" height="350" scrolling="no" frameborder="0" align=""></iframe>
+                </div>
+
+            </div>
+
+            <div class="rightpart2">
+                <h4>景区热度排行榜</h4>
+                <div class="rightchart2">
+                    <iframe src="https://dycharts.com/xshow/index.html?id=c_0f88079a87b3ee42bd2e1990e83d3138"
+                        width="500" height="350" scrolling="no" frameborder="0" align=""></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="middlechart">
+            <div class="t1">
+                <h3>“战旗飘飘，名副其实”</h3>
+            </div>
+            <div class="colorblock"></div>
+            <div class="t2">
+                <p class="p1">唐昌镇战旗村地处横山脚下，柏条河畔。位于郫都区、都江堰市、彭州市三市县交界处。全村有耕地2158.5亩，幅员面积2853.8亩。</p>
+                <p class="p2">在乡村振兴战略的支持下，战旗村以地方特色产业为基础，建立特色产业园区，将乡土景观与其相结合，打造产业体验式的城郊乡村游憩景观，2018年被评为中国美丽休闲乡村。</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
